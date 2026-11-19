@@ -20,8 +20,9 @@
 
 3. CẤU TRÚC THƯ MỤC MÃ NGUỒN
 - data/vietnamese_news_dataset.json : Bộ dữ liệu 10 bài báo tiếng Việt có tóm tắt tham chiếu chuẩn.
+- src/preprocessing.py              : Module tách câu, làm sạch văn bản và lọc hư từ tiếng Việt.
+- src/similarity.py                 : Module xây dựng đồ thị câu và tính ma trận tương đồng W.
 - src/pagerank.py                   : Module chuẩn hóa ma trận Markov M và thuật toán lặp PageRank.
-
 - main.py                           : Chương trình chạy thử nghiệm tách câu, ma trận tương đồng và PageRank lặp.
 - README.md                         : Tài liệu mô tả dự án và hướng dẫn chạy chương trình.
 
@@ -37,5 +38,4 @@ Kết quả đầu ra trên màn hình console:
 - Hiển thị danh sách các câu sau khi tách từ bài báo mẫu.
 - Hiển thị ma trận tương đồng giữa các câu (W) kích thước N x N.
 - Hiển thị điểm phân hạng PageRank lặp của từng đỉnh câu và số vòng lặp hội tụ thực tế.
-
-File src/pagerank.py và main.py: Cài đặt hàm      
+    
