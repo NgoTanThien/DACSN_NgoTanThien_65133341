@@ -20,19 +20,19 @@
 
 3. CẤU TRÚC THƯ MỤC MÃ NGUỒN
 - data/vietnamese_news_dataset.json : Bộ dữ liệu 10 bài báo tiếng Việt có tóm tắt tham chiếu chuẩn.
+- src/pagerank.py                   : Module chuẩn hóa ma trận Markov M và thuật toán lặp PageRank.
 - src/preprocessing.py              : Module tách câu, làm sạch văn bản và lọc hư từ tiếng Việt.
 - src/similarity.py                 : Module xây dựng đồ thị câu và tính ma trận tương đồng W.
-- src/pagerank.py                   : Module chuẩn hóa ma trận Markov M và thuật toán lặp PageRank.
-- main.py                           : Chương trình chạy thử nghiệm tách câu, ma trận tương đồng và PageRank lặp.
+- main.py                           : Chương trình chạy thử nghiệm tách câu, ma trận tương 
 - README.md                         : Tài liệu mô tả dự án và hướng dẫn chạy chương trình.
 
 --------------------------------------------------------------------------------
 
 4. HƯỚNG DẪN CHẠY CHƯƠNG TRÌNH
-Yêu cầu: Python 3.9 trở lên (chỉ dùng thư viện chuẩn của Python, không phụ thuộc thư viện ngoài).
+Yêu cầu: Python 3.9 trở lên.
 
 Lệnh chạy tại thư mục gốc của dự án:
-python main.py
+python3.15 main.py
 
 Kết quả đầu ra trên màn hình console:
 - Hiển thị danh sách các câu sau khi tách từ bài báo mẫu.
