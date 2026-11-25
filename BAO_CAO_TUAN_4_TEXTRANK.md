@@ -20,7 +20,7 @@ THÔNG TIN CHUNG:
 1. TỔNG QUAN NHIỆM VỤ TUẦN 4
 
 Theo yêu cầu và hướng dẫn của Thầy Ngô Nguyễn Tường Nghi, các mục tiêu thực hiện trong Tuần 4 bao gồm:
-1.1. Thay thế bộ dữ liệu thử nghiệm bằng 30 đến 50 bài báo tin tức tiếng Việt thật lấy từ bộ ngữ liệu chuẩn VietNews, có tóm tắt tham chiếu (reference summary), ghi rõ nguồn gốc từng bài và mỗi bài có tối thiểu 10 câu văn (len split_sentences >= 10).
+1.1. Thay thế bộ dữ liệu thử nghiệm bằng 30 đến 50 bài báo tin tức tiếng Việt thật lấy từ bộ ngữ liệu chuẩn VietNews, có tóm tắt tham chiếu (reference summary), ghi rõ nguồn gốc từng bài và mỗi bài có tối thiểu 10 câu văn. Bộ dữ liệu được sàng lọc cân đối, mỗi bài có từ 12 đến 20 câu hoàn chỉnh, không có bài quá dài hoặc quá ngắn.
 1.2. Cài đặt hoàn chỉnh giải thuật trích chọn Top-K có sắp xếp lại theo thứ tự xuất hiện ban đầu (giữ thứ tự gốc) và phương pháp đường cơ sở Lead-K (trích K câu đầu).
 1.3. Tự cài đặt từ đầu (from scratch) bộ ba độ đo đánh giá ROUGE-1, ROUGE-2 (n-gram overlap) và ROUGE-L (Longest Common Subsequence - chuỗi con chung dài nhất).
 1.4. Xây dựng tối thiểu 3 bài kiểm thử đơn vị (Unit Tests) tự động:
@@ -34,7 +34,7 @@ Theo yêu cầu và hướng dẫn của Thầy Ngô Nguyễn Tường Nghi, cá
 
 2. BỘ DỮ LIỆU TIN TỨC TIẾNG VIỆT THỰC TẾ (40 BÀI BÁO TỪ VIETNEWS)
 
-Dữ liệu được thu thập từ bộ ngữ liệu mở VietNews (VNDS - Vietnamese Dataset for Summarization) trích xuất từ các tờ báo chính thống tại Việt Nam (VnExpress, Dân Trí, Người Đưa Tin, Tuổi Trẻ, v.v.).
+Dữ liệu được trích xuất từ kho ngữ liệu mở VietNews (VNDS - Vietnamese Dataset for Summarization) công khai từ các cơ quan báo chí chính thống tại Việt Nam (VnExpress, Dân Trí, Người Đưa Tin, Tuổi Trẻ, v.v.).
 Dữ liệu lưu tại file data/vietnamese_news_dataset.json với cấu trúc mỗi bài gồm:
 - id: Mã định danh bài báo (VN_001 đến VN_040).
 - guid: Mã tham chiếu gốc trong tập dữ liệu VietNews.
@@ -46,20 +46,21 @@ Dữ liệu lưu tại file data/vietnamese_news_dataset.json với cấu trúc 
 
 Thống kê thực tế bộ dữ liệu:
 - Tổng số lượng bài báo: 40 bài (đáp ứng đúng khoảng 30-50 bài của Giảng viên).
-- Điều kiện tiên quyết: Mỗi bài báo đều có từ 10 câu trở lên.
-- Bài có số câu ít nhất: 10 câu (bài VN_002).
-- Bài có số câu nhiều nhất: 46 câu (bài VN_021).
-- Số câu trung bình mỗi bài báo: 21.9 câu/bài.
+- Tiêu chí chuẩn hóa: Mỗi bài báo đều có từ 12 đến 20 câu văn hoàn chỉnh (bảo đảm >= 10 câu, không bị bài quá dài hay bài quá ngắn).
+- Bài có số câu ít nhất: 12 câu.
+- Bài có số câu nhiều nhất: 20 câu.
+- Số câu trung bình mỗi bài báo: 15.03 câu/bài.
 - Tất cả 40 bài đều có nguồn gốc rõ ràng và tóm tắt tham chiếu tương ứng.
 
 Bảng minh họa một số bài báo tiêu biểu trong tập dữ liệu:
-- VN_001 | Nguồn: VietNews - Pháp luật / Tòa án | 20 câu | Tiêu đề: Bản án cho đối tượng giả danh công an để lừa đảo
-- VN_002 | Nguồn: VietNews - Xã hội / Đời sống | 10 câu | Tiêu đề: Nam thanh niên thủ dâm trên xe buýt từng bị xử phạt
-- VN_003 | Nguồn: VietNews - Y tế / Sức khỏe | 35 câu | Tiêu đề: Không được công nhận, thuốc sinh con theo ý muốn vẫn rao bán công khai
-- VN_004 | Nguồn: VietNews - Thời sự / Chính sách | 23 câu | Tiêu đề: VEC từ chối phục vụ vĩnh viễn 2 ô tô gây rối trạm thu phí
-- VN_005 | Nguồn: VietNews - Pháp luật / Tòa án | 22 câu | Tiêu đề: VKSND tỉnh Sóc Trăng xin lỗi oan sai nữ hoàng lục bình
-- VN_007 | Nguồn: VietNews - Kinh tế / Tài chính | 25 câu | Tiêu đề: Giá vàng trong nước biến động mạnh trước áp lực thế giới
-- VN_008 | Nguồn: VietNews - Giáo dục / Đào tạo | 18 câu | Tiêu đề: Tuyển sinh đại học: Tăng cường các phương thức xét tuyển mới
+- VN_001 | Nguồn: VietNews - Pháp luật / Tòa án | 12 câu | Tiêu đề: Bản án cho đối tượng giả danh công an để lừa đảo
+- VN_002 | Nguồn: VietNews - Thời sự / Chính sách | 19 câu | Tiêu đề: VEC từ chối phục vụ vĩnh viễn 2 ô tô gây rối trạm thu phí
+- VN_003 | Nguồn: VietNews - Pháp luật / Tòa án | 16 câu | Tiêu đề: VKSND tỉnh Sóc Trăng xin lỗi oan sai nữ hoàng lục bình
+- VN_004 | Nguồn: VietNews - Pháp luật / Tòa án | 18 câu | Tiêu đề: Đề nghị truy tố 2 giám đốc vụ chìm tàu ở Cần Giờ
+- VN_005 | Nguồn: VietNews - Pháp luật / Tòa án | 16 câu | Tiêu đề: Tên trộm thuê người cẩu trộm máy ủi trong khu công nghiệp
+- VN_006 | Nguồn: VietNews - Pháp luật / Tòa án | 19 câu | Tiêu đề: Chiếc xe kia morning đời cũ và manh mối truy bắt kẻ giết người
+- VN_007 | Nguồn: VietNews - Xã hội / Đời sống | 19 câu | Tiêu đề: Khởi tố vụ án phá rừng tại Kon Tum
+- VN_008 | Nguồn: VietNews - Pháp luật / Tòa án | 16 câu | Tiêu đề: Vụ thanh niên treo cổ, hai tay bị trói ở Hoài Đức
 
 ================================================================================
 
@@ -152,18 +153,18 @@ Hệ phương trình PageRank tại điểm dừng hội tụ (damping factor d 
 
 5. KẾT QUẢ THỰC NGHIỆM VÀ ĐÁNH GIÁ SO SÁNH TRÊN 40 BÀI BÁO
 
-5.1. Bảng số liệu ROUGE thực tế (chạy trên toàn bộ 40 bài báo VietNews):
+5.1. Bảng số liệu ROUGE thực tế (chạy trên toàn bộ 40 bài báo VietNews cân đối):
 Chương trình main.py đã thực hiện tóm tắt và đánh giá tự động trên toàn bộ 40 bài báo, điểm số F1-Score trung bình thu được như sau:
 
 Phương pháp              ROUGE-1 F1     ROUGE-2 F1     ROUGE-L F1
-TextRank (Top-3)         0.2420         0.1282         0.1735
-Lead-3 (Baseline)        0.2673         0.1496         0.1929
+TextRank (Top-3)         0.2241         0.1119         0.1492
+Lead-3 (Baseline)        0.2502         0.1433         0.1833
 
 5.2. Phân tích kết quả chuyên môn (Insight kỹ thuật):
 - Hiện tượng Lead Bias trong dữ liệu tin tức:
-  Điểm ROUGE của phương pháp Lead-3 đạt 0.2673 (nhỉnh hơn TextRank là 0.2420). Đây là một kết quả hoàn toàn phù hợp với lý thuyết Xử lý ngôn ngữ tự nhiên. Thể loại tin tức báo chí luôn được viết theo cấu trúc kim tự tháp ngược (Inverted Pyramid): câu đầu tiên (sapo) luôn tóm tắt trọn vẹn thông tin quan trọng nhất của sự kiện (5W1H: Ai, Cái gì, Ở đâu, Khi nào, Tại sao). Tóm tắt tham chiếu do biên tập viên viết cũng tập trung cao độ vào những câu mở đầu này.
+  Điểm ROUGE của phương pháp Lead-3 đạt 0.2502 (nhỉnh hơn TextRank là 0.2241). Đây là một kết quả hoàn toàn phù hợp với lý thuyết Xử lý ngôn ngữ tự nhiên. Thể loại tin tức báo chí luôn được viết theo cấu trúc kim tự tháp ngược (Inverted Pyramid): câu đầu tiên (sapo) luôn tóm tắt trọn vẹn thông tin quan trọng nhất của sự kiện (5W1H: Ai, Cái gì, Ở đâu, Khi nào, Tại sao). Tóm tắt tham chiếu do biên tập viên viết cũng tập trung cao độ vào những câu mở đầu này.
 - Ý nghĩa khoa học và ưu điểm của TextRank:
-  Mặc dù gặp bất lợi do cấu trúc Lead Bias của tin tức, TextRank vẫn đạt kết quả rất tốt (ROUGE-1 = 0.2420) hoàn toàn bằng giải thuật đồ thị không giám sát (unsupervised). TextRank không giả định thông tin quan trọng phải nằm ở đầu bài, mà tìm kiếm những câu có tính kết nối thông tin toàn cục trên toàn bộ bài báo. Đối với các thể loại văn bản khác (như báo cáo nghiên cứu khoa học, tài liệu pháp lý, truyện kể), thông tin then chốt thường nằm rải rác ở thân bài và kết luận; khi đó TextRank sẽ phát huy sức mạnh vượt trội so với Lead-K.
+  Mặc dù gặp bất lợi do cấu trúc Lead Bias của tin tức, TextRank vẫn đạt kết quả rất tốt (ROUGE-1 = 0.2241) hoàn toàn bằng giải thuật đồ thị không giám sát (unsupervised). TextRank không giả định thông tin quan trọng phải nằm ở đầu bài, mà tìm kiếm những câu có tính kết nối thông tin toàn cục trên toàn bộ bài báo. Đối với các thể loại văn bản khác (như báo cáo nghiên cứu khoa học, tài liệu pháp lý, truyện kể), thông tin then chốt thường nằm rải rác ở thân bài và kết luận; khi đó TextRank sẽ phát huy sức mạnh vượt trội so với Lead-K.
 - Hiệu quả của cơ chế giữ thứ tự gốc:
   Các câu được TextRank trích xuất khi được sắp xếp lại theo đúng thứ tự xuất hiện ban đầu giúp văn bản tóm tắt đọc rất mạch lạc, liên kết tự nhiên, không bị xáo trộn logic thời gian.
 
@@ -172,7 +173,7 @@ Lead-3 (Baseline)        0.2673         0.1496         0.1929
 6. KẾT LUẬN VÀ KẾ HOẠCH TUẦN TIẾP THEO
 
 6.1. Kết quả đạt được trong Tuần 4:
-- Đã chuẩn bị bộ dữ liệu thực tế gồm 40 bài báo VietNews chuẩn, có tóm tắt tham chiếu, mỗi bài >= 10 câu văn.
+- Đã chuẩn bị bộ dữ liệu thực tế gồm 40 bài báo VietNews chuẩn, có tóm tắt tham chiếu, mỗi bài cân đối từ 12 đến 20 câu văn.
 - Cài đặt thành công Top-K giữ nguyên thứ tự gốc và Lead-K baseline.
 - Tự lập trình hoàn chỉnh bộ ba độ đo ROUGE-1, ROUGE-2, ROUGE-L từ các công thức toán học.
 - Xây dựng 6 unit tests tự động, đặc biệt có chứng minh nghiệm giải tích 3 câu tính tay.

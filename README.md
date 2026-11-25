@@ -13,7 +13,7 @@ SO SÁNH VỚI BASELINE LEAD-K BẰNG ĐỘ ĐO ROUGE TỰ CÀI ĐẶT
 --------------------------------------------------------------------------------
 
 2. NỘI DUNG HOÀN THÀNH TRONG TUẦN 4
-- Dữ liệu thực tế: Cập nhật 40 bài báo thật có tóm tắt tham chiếu từ bộ ngữ liệu VietNews, mỗi bài có ít nhất 10 câu văn và ghi rõ nguồn gốc (data/vietnamese_news_dataset.json).
+- Dữ liệu thực tế: Cập nhật 40 bài báo thật có tóm tắt tham chiếu từ bộ ngữ liệu VietNews, mỗi bài được chuẩn hóa cân đối từ 12 đến 20 câu văn và ghi rõ nguồn gốc (data/vietnamese_news_dataset.json).
 - Thuật toán tóm tắt:
   + Cài đặt trích chọn Top-K giữ nguyên thứ tự xuất hiện ban đầu của câu (src/textrank.py).
   + Cài đặt phương pháp đường cơ sở Lead-K trích K câu đầu (src/textrank.py).
@@ -24,8 +24,8 @@ SO SÁNH VỚI BASELINE LEAD-K BẰNG ĐỘ ĐO ROUGE TỰ CÀI ĐẶT
 --------------------------------------------------------------------------------
 
 3. CẤU TRÚC THƯ MỤC DỰ ÁN
-- data/vietnamese_news_dataset.json : Bộ dữ liệu 40 bài báo thật từ VietNews (mỗi bài >= 10 câu).
-- src/preprocessing.py              : Module tách câu, chuẩn hóa và lọc hư từ tiếng Việt.
+- data/vietnamese_news_dataset.json : Bộ dữ liệu 40 bài báo thật từ VietNews (mỗi bài từ 12 đến 20 câu).
+- src/preprocessing.py              : Module tách câu chuyên sâu (bảo vệ viết tắt), chuẩn hóa và lọc hư từ.
 - src/similarity.py                 : Module tính ma trận tương đồng trọng số cạnh W.
 - src/pagerank.py                   : Module chuẩn hóa Markov M và giải thuật PageRank lặp.
 - src/textrank.py                   : Module tóm tắt trích rút TextRank Top-K (giữ thứ tự gốc) và Lead-K.
@@ -51,5 +51,5 @@ b. Chạy chương trình đánh giá so sánh trên toàn bộ dữ liệu:
 python main.py
 
 Kết quả thực nghiệm trên 40 bài báo:
-- TextRank (Top-3) : ROUGE-1 F1 = 0.2420 | ROUGE-2 F1 = 0.1282 | ROUGE-L F1 = 0.1735
-- Lead-3 (Baseline): ROUGE-1 F1 = 0.2673 | ROUGE-2 F1 = 0.1496 | ROUGE-L F1 = 0.1929
+- TextRank (Top-3) : ROUGE-1 F1 = 0.2241 | ROUGE-2 F1 = 0.1119 | ROUGE-L F1 = 0.1492
+- Lead-3 (Baseline): ROUGE-1 F1 = 0.2502 | ROUGE-2 F1 = 0.1433 | ROUGE-L F1 = 0.1833
