@@ -32,7 +32,7 @@ SO SÁNH VỚI BASELINE LEAD-K BẰNG ĐỘ ĐO ROUGE TỰ CÀI ĐẶT
 - src/rouge.py                      : Module tự cài đặt ROUGE-1, ROUGE-2, ROUGE-L.
 - tests/test_textrank.py            : Bộ 6 bài kiểm thử đơn vị tự động.
 - main.py                           : Chương trình đánh giá tóm tắt trên toàn bộ 40 bài báo.
-- BAO_CAO_TUAN_4_TEXTRANK.docx      : Báo cáo Word Tuần 4 (đúng bìa lớp 65.CNTT-1).
+- BAO_CAO_TUAN_4_HOAN_CHINH.docx    : Báo cáo Word Tuần 4 (khung bìa hoa văn, logo NTU, lớp 65.CNTT-1).
 - BAO_CAO_TUAN_4_TEXTRANK.md        : Báo cáo định dạng văn bản Tuần 4.
 - README.md                         : Tài liệu hướng dẫn và mô tả dự án.
 
@@ -40,15 +40,15 @@ SO SÁNH VỚI BASELINE LEAD-K BẰNG ĐỘ ĐO ROUGE TỰ CÀI ĐẶT
 
 4. HƯỚNG DẪN THỰC THI
 
-Yêu cầu môi trường: Python 3.9 trở lên.
+Yêu cầu môi trường: Python 3.15 (hoặc Python 3.9 trở lên).
 
 a. Chạy bộ kiểm thử tự động (Unit Tests):
-python -m unittest -v tests/test_textrank.py
+python3.15 -m unittest -v tests/test_textrank.py
 
 Kết quả kỳ vọng: 6/6 tests PASS (thời gian chạy dưới 0.01s).
 
-b. Chạy chương trình đánh giá so sánh trên toàn bộ dữ liệu:
-python main.py
+b. Chạy chương trình đánh giá so sánh trên toàn bộ 40 bài báo:
+python3.15 main.py
 
 Kết quả thực nghiệm trên 40 bài báo:
 - TextRank (Top-3) : ROUGE-1 F1 = 0.2241 | ROUGE-2 F1 = 0.1119 | ROUGE-L F1 = 0.1492
