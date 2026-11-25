@@ -12,7 +12,7 @@ def run_week4_evaluation():
 
     total_articles = len(dataset)
     print("=" * 105)
-    print("CHƯƠNG TRÌNH ĐÁNH GIÁ TÓM TẮT VĂN BẢN TIẾNG VIỆT - TUẦN 4")
+    print("CHƯƠNG TRÌNH ĐÁNH GIÁ TÓM TẮT VĂN BẢN TIẾNG VIỆT")
     print(f"Tổng số bài báo thực nghiệm: {total_articles} bài thật từ VietNews (mỗi bài >= 10 câu)")
     print("Mô hình so sánh: TextRank (Top-3 giữ thứ tự gốc) vs Baseline Lead-3 (3 câu đầu)")
     print("Độ đo tự cài đặt: ROUGE-1, ROUGE-2, ROUGE-L (Precision, Recall, F1-Score)")

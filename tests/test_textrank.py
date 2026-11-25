@@ -8,15 +8,6 @@ from src.rouge import compute_rouge_n, compute_rouge_l, evaluate_summary, rouge_
 
 
 class TestTextRankWeek4(unittest.TestCase):
-    """
-    Bộ kiểm thử đơn vị (Unit Tests) Tuần 4 theo yêu cầu của Giảng viên hướng dẫn:
-    1. Kiểm thử ma trận đối xứng và đường chéo bằng 0.
-    2. Kiểm thử tổng điểm PageRank xấp xỉ 1.0 (chuẩn hóa phân phối xác suất).
-    3. Kiểm thử ví dụ 3 câu tính tay có nghiệm giải tích chính xác.
-    4. Kiểm thử giải thuật chọn Top-K bảo toàn thứ tự ban đầu của câu.
-    5. Kiểm thử các độ đo ROUGE-1, ROUGE-2 và ROUGE-L tự cài đặt.
-    6. Kiểm thử baseline Lead-K.
-    """
 
     def test_similarity_matrix_symmetry_and_zero_diagonal(self):
         """Yêu cầu 1: Ma trận đối xứng W_ij = W_ji và đường chéo W_ii = 0."""
@@ -63,29 +54,6 @@ class TestTextRankWeek4(unittest.TestCase):
         self.assertEqual(scores.index(max(scores)), 1)
 
     def test_three_sentences_hand_calculated(self):
-        """
-        Yêu cầu 3: Ví dụ 3 câu tính tay (Hand-calculated example).
-        Xét 3 câu:
-        S1: "học sinh đi học" -> token: ["học", "sinh", "học"] (len=3)
-        S2: "học sinh thi đại học" -> token: ["học", "sinh", "thi", "đại", "học"] (len=5)
-        S3: "trời mưa to" -> token: ["trời", "mưa", "to"] (len=3)
-
-        Trọng số tương đồng:
-        - Giữa S1 và S2: từ chung = {"học", "sinh"} -> overlap = 2
-          Mẫu số = ln(3 + 1) + ln(5 + 1) = ln(4) + ln(6)
-          W_12 = W_21 = 2 / (ln(4) + ln(6)) > 0
-        - Giữa S1, S2 với S3: không có từ chung -> W_13 = W_23 = 0 (S3 là đỉnh cô lập)
-
-        Chuẩn hóa hàng:
-        - Hàng 1: [0, 1, 0]
-        - Hàng 2: [1, 0, 0]
-        - Hàng 3 (tổng = 0): phân phối đều [1/3, 1/3, 1/3]
-
-        Hệ phương trình PageRank tại hội tụ (d = 0.85):
-        PR(S3) = (1 - 0.85)/3 + 0.85 * (1/3) * PR(S3)
-               = 0.05 / (1 - 0.85/3) = 0.15 / 2.15 = 3 / 43 ≈ 0.069767
-        Do đối xứng: PR(S1) = PR(S2) = (1 - 3/43) / 2 = 20 / 43 ≈ 0.465116
-        """
         tokens_s1 = ["học", "sinh", "học"]
         tokens_s2 = ["học", "sinh", "thi", "đại", "học"]
         tokens_s3 = ["trời", "mưa", "to"]
