@@ -51,3 +51,4 @@ python3.15 main.py
 Kết quả thực nghiệm trên 40 bài báo:
 - TextRank (Top-3) : ROUGE-1 F1 = 0.2241 | ROUGE-2 F1 = 0.1119 | ROUGE-L F1 = 0.1492
 - Lead-3 (Baseline): ROUGE-1 F1 = 0.2502 | ROUGE-2 F1 = 0.1433 | ROUGE-L F1 = 0.1833
+

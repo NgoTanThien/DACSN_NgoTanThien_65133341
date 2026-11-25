@@ -33,4 +33,3 @@ def build_similarity_matrix(tokenized_sentences: List[List[str]]) -> List[List[f
             matrix_w[i][j] = sim
             matrix_w[j][i] = sim
     return matrix_w
-

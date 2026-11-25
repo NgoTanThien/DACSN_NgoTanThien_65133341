@@ -68,3 +68,4 @@ def preprocess_document(text: str) -> tuple[List[str], List[List[str]]]:
     original_sentences = split_sentences(text)
     tokenized_sentences = [tokenize_and_clean(s) for s in original_sentences]
     return original_sentences, tokenized_sentences
+

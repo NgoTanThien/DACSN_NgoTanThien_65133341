@@ -78,3 +78,4 @@ def summarize_lead_k(document: str, top_k: int = 3) -> str:
         return ""
     selected = original_sentences[:top_k]
     return " ".join(selected)
+

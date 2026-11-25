@@ -51,4 +51,3 @@ def run_pagerank_iterative(
             break
 
     return scores, actual_iterations
-
